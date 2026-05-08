@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GoFlow — Coming Soon" />
+  <meta name="description" content="GoFlow — Smart tools for every investor." />
   <meta name="theme-color" content="#f7fbff" />
   <title>GoFlow — Coming Soon</title>
 
   <style>
     :root {
       --bg: #f7fbff;
-      --bg-soft: #ffffff;
+      --bg-2: #ffffff;
       --ink: #111111;
-      --navy: #16254b;
-      --blue: #2d59db;
-      --blue-soft: rgba(45, 89, 219, 0.14);
-      --line: rgba(22, 37, 75, 0.08);
-      --text-soft: #6f7b91;
-      --shadow: 0 28px 90px rgba(22, 37, 75, 0.10);
-      --max-width: 1240px;
+      --navy: #17264c;
+      --blue: #2e59db;
+      --blue-2: #4b78ff;
+      --text: #22324d;
+      --muted: #6f7c92;
+      --line: rgba(23, 38, 76, 0.08);
+      --line-strong: rgba(46, 89, 219, 0.14);
+      --shadow: 0 30px 90px rgba(23, 38, 76, 0.10);
       --mouse-x: 50%;
       --mouse-y: 50%;
+      --max-width: 1240px;
     }
 
     * {
@@ -37,12 +39,12 @@
       min-height: 100vh;
       overflow: hidden;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--navy);
+      color: var(--text);
       background:
-        radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(45, 89, 219, 0.10), transparent 22rem),
-        radial-gradient(circle at 15% 20%, rgba(45, 89, 219, 0.08), transparent 24rem),
-        radial-gradient(circle at 82% 14%, rgba(22, 37, 75, 0.06), transparent 24rem),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(46, 89, 219, 0.08), transparent 24rem),
+        radial-gradient(circle at 16% 18%, rgba(46, 89, 219, 0.06), transparent 28rem),
+        radial-gradient(circle at 84% 14%, rgba(23, 38, 76, 0.05), transparent 26rem),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
     }
 
     a {
@@ -73,23 +75,23 @@
       z-index: 1;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(45, 89, 219, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(45, 89, 219, 0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4) 55%, transparent 100%);
+        linear-gradient(rgba(46, 89, 219, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 89, 219, 0.028) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.95), rgba(0,0,0,0.60) 68%, transparent 100%);
     }
 
     .ambient-glow {
       position: fixed;
       left: var(--mouse-x);
       top: var(--mouse-y);
-      width: 540px;
-      height: 540px;
+      width: 460px;
+      height: 460px;
       transform: translate(-50%, -50%);
       z-index: 1;
       pointer-events: none;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(45, 89, 219, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(46, 89, 219, 0.12), transparent 72%);
       filter: blur(22px);
     }
 
@@ -102,56 +104,50 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
     }
 
-    .brand-chip,
-    .status-chip {
+    .top-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      min-height: 46px;
+      min-height: 44px;
       padding: 0 16px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.66);
+      background: rgba(255, 255, 255, 0.68);
       backdrop-filter: blur(18px);
-      box-shadow: 0 10px 32px rgba(22, 37, 75, 0.06);
-      font-size: 0.92rem;
+      box-shadow: 0 10px 28px rgba(23, 38, 76, 0.06);
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--navy);
       white-space: nowrap;
     }
 
-    .brand-chip::before {
+    .top-pill.brand::before,
+    .top-pill.status::before {
       content: "";
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--ink), var(--blue));
-      box-shadow: 0 0 0 7px rgba(45, 89, 219, 0.08);
+      flex: 0 0 auto;
     }
 
-    .status-chip::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
+    .top-pill.brand::before {
+      background: linear-gradient(135deg, var(--ink), var(--blue));
+      box-shadow: 0 0 0 7px rgba(46, 89, 219, 0.08);
+    }
+
+    .top-pill.status::before {
       background: var(--blue);
-      box-shadow: 0 0 0 7px rgba(45, 89, 219, 0.08);
+      box-shadow: 0 0 0 7px rgba(46, 89, 219, 0.08);
       animation: pulse 2.6s ease-out infinite;
     }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(45, 89, 219, 0.24);
-      }
-      70% {
-        box-shadow: 0 0 0 13px rgba(45, 89, 219, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(45, 89, 219, 0);
-      }
+      0% { box-shadow: 0 0 0 0 rgba(46, 89, 219, 0.25); }
+      70% { box-shadow: 0 0 0 13px rgba(46, 89, 219, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 89, 219, 0); }
     }
 
     main {
@@ -169,15 +165,15 @@
       position: relative;
       width: 100%;
       max-width: 1100px;
-      min-height: 620px;
+      min-height: 650px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(22, 37, 75, 0.08);
-      border-radius: 36px;
+      border: 1px solid var(--line);
+      border-radius: 38px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.58)),
-        radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(45, 89, 219, 0.09), transparent 24rem);
-      backdrop-filter: blur(24px);
+        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.60)),
+        radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(46, 89, 219, 0.07), transparent 24rem);
+      backdrop-filter: blur(22px);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
@@ -185,33 +181,24 @@
     .hero-shell::before {
       content: "";
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(45, 89, 219, 0.08), transparent 35%),
-        linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
-    }
-
-    .hero-shell::after {
-      content: "";
-      position: absolute;
       inset: 18px;
       border-radius: 28px;
-      border: 1px solid rgba(45, 89, 219, 0.08);
+      border: 1px solid rgba(46, 89, 219, 0.08);
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      width: 100%;
+      max-width: 860px;
+      padding: 56px 36px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 26px;
-      width: 100%;
-      padding: 56px 40px;
       text-align: center;
+      gap: 24px;
     }
 
     .logo-wrap {
@@ -219,63 +206,97 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 24px;
+      padding: 22px 28px;
       border-radius: 30px;
       background: rgba(255, 255, 255, 0.34);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 18px 54px rgba(22, 37, 75, 0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 46px rgba(23, 38, 76, 0.07);
     }
 
     .logo-wrap::before {
       content: "";
       position: absolute;
-      inset: -12px;
-      border-radius: 38px;
-      background: radial-gradient(circle, rgba(45, 89, 219, 0.10), transparent 72%);
+      inset: -14px;
+      border-radius: 40px;
+      background: radial-gradient(circle, rgba(46, 89, 219, 0.10), transparent 72%);
       z-index: -1;
     }
 
     .hero-logo {
       display: block;
-      width: min(76vw, 640px);
-      max-width: 640px;
-      min-width: 280px;
+      width: min(78vw, 690px);
+      max-width: 690px;
+      min-width: 290px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 14px 34px rgba(45, 89, 219, 0.10));
+      filter: drop-shadow(0 12px 28px rgba(46, 89, 219, 0.08));
     }
 
-    .coming-soon {
+    .tagline {
+      color: var(--navy);
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .meta-pill {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      min-height: 54px;
-      padding: 0 22px;
-      border: 1px solid rgba(45, 89, 219, 0.14);
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 18px;
       border-radius: 999px;
+      border: 1px solid var(--line-strong);
       background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 14px 40px rgba(22, 37, 75, 0.08);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 34px rgba(23, 38, 76, 0.06);
       color: var(--navy);
-      font-size: clamp(1rem, 1.4vw, 1.08rem);
-      font-weight: 800;
-      letter-spacing: 0.02em;
+      font-size: 0.96rem;
+      font-weight: 750;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
 
-    .coming-soon::before {
-      content: "";
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      background: var(--blue);
-      box-shadow: 0 0 0 8px rgba(45, 89, 219, 0.08);
+    .meta-pill:hover {
+      transform: translateY(-2px);
+      border-color: rgba(46, 89, 219, 0.22);
+      box-shadow: 0 18px 40px rgba(23, 38, 76, 0.08);
+    }
+
+    .meta-pill.primary {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 16px 42px rgba(46, 89, 219, 0.22);
+    }
+
+    .meta-pill.email {
+      color: var(--blue);
+      font-weight: 800;
     }
 
     .micro-line {
-      width: 130px;
+      width: 150px;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(90deg, transparent, rgba(45, 89, 219, 0.42), transparent);
+      background: linear-gradient(90deg, transparent, rgba(46, 89, 219, 0.42), transparent);
+      margin-top: 2px;
     }
 
     footer {
@@ -288,7 +309,6 @@
       margin: 0 auto;
       padding: 0 28px;
       display: flex;
-      align-items: center;
       justify-content: center;
       text-align: center;
     }
@@ -299,31 +319,31 @@
       justify-content: center;
       min-height: 42px;
       padding: 0 16px;
-      border: 1px solid rgba(22, 37, 75, 0.08);
+      border: 1px solid var(--line);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.66);
-      backdrop-filter: blur(18px);
-      color: var(--text-soft);
+      backdrop-filter: blur(16px);
+      color: var(--muted);
       font-size: 0.88rem;
       font-weight: 600;
-      box-shadow: 0 10px 28px rgba(22, 37, 75, 0.06);
+      box-shadow: 0 10px 28px rgba(23, 38, 76, 0.06);
     }
 
-    @media (max-width: 900px) {
-      header {
-        padding-top: 22px;
-      }
-
+    @media (max-width: 920px) {
       .hero-shell {
-        min-height: 560px;
+        min-height: 590px;
       }
 
       .hero-content {
-        padding: 44px 24px;
+        padding: 48px 24px;
       }
 
       .hero-logo {
-        width: min(82vw, 520px);
+        width: min(82vw, 560px);
+      }
+
+      .tagline {
+        font-size: clamp(1.3rem, 3.6vw, 1.8rem);
       }
     }
 
@@ -337,8 +357,7 @@
         align-items: stretch;
       }
 
-      .brand-chip,
-      .status-chip {
+      .top-pill {
         justify-content: center;
       }
 
@@ -348,12 +367,13 @@
       }
 
       .hero-shell {
-        min-height: 480px;
+        min-height: 520px;
         border-radius: 28px;
       }
 
       .hero-content {
-        gap: 22px;
+        gap: 20px;
+        padding: 36px 20px;
       }
 
       .logo-wrap {
@@ -361,12 +381,21 @@
       }
 
       .hero-logo {
-        width: min(84vw, 420px);
+        width: min(86vw, 460px);
+        min-width: 220px;
       }
 
-      .coming-soon {
-        padding: 0 18px;
-        font-size: 0.96rem;
+      .subtitle {
+        font-size: 0.98rem;
+      }
+
+      .meta-row {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .meta-pill {
+        width: 100%;
       }
 
       footer {
@@ -399,20 +428,30 @@
 
   <div class="page">
     <header>
-      <div class="brand-chip">GoFlow</div>
-      <div class="status-chip">Platform preparing for launch</div>
+      <div class="top-pill brand">GoFlow</div>
+      <div class="top-pill status">Platform preparing for launch</div>
     </header>
 
     <main>
       <section class="hero-shell" aria-label="GoFlow coming soon">
         <div class="hero-content">
           <div class="logo-wrap">
-            <img src="logo.png" alt="GoFlow" class="hero-logo" />
+            <img src="logo.png" alt="GoFlow logo" class="hero-logo" />
+          </div>
+
+          <div class="tagline">Smart tools for every investor.</div>
+
+          <p class="subtitle">
+            GoFlow is preparing a modern financial technology platform designed for clarity,
+            intelligent structure, and disciplined decision-making.
+          </p>
+
+          <div class="meta-row">
+            <div class="meta-pill primary">Coming Soon</div>
+            <a class="meta-pill email" href="mailto:info@goflow-ai.com">info@goflow-ai.com</a>
           </div>
 
           <div class="micro-line"></div>
-
-          <div class="coming-soon">Coming Soon</div>
         </div>
       </section>
     </main>
@@ -430,6 +469,8 @@
     window.addEventListener("mousemove", (event) => {
       root.style.setProperty("--mouse-x", `${event.clientX}px`);
       root.style.setProperty("--mouse-y", `${event.clientY}px`);
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
     });
 
     const canvas = document.getElementById("particle-canvas");
@@ -439,7 +480,7 @@
     let mouse = {
       x: window.innerWidth / 2,
       y: window.innerHeight / 2,
-      radius: 180
+      radius: 150
     };
 
     function setCanvasSize() {
@@ -455,21 +496,22 @@
     function buildParticles() {
       particles = [];
       const area = window.innerWidth * window.innerHeight;
-      const count = Math.min(1400, Math.max(700, Math.floor(area / 1400)));
+      const count = Math.min(2200, Math.max(1200, Math.floor(area / 850)));
 
       for (let i = 0; i < count; i++) {
-        const band = i % 7;
+        const clusterBias = Math.random();
+        const baseSpeed = 0.05 + Math.random() * 0.12;
+
         particles.push({
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          baseX: Math.random() * window.innerWidth,
-          baseY: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * (0.18 + band * 0.012),
-          vy: (Math.random() - 0.5) * (0.18 + band * 0.012),
-          size: Math.random() * 1.4 + 0.25,
-          alpha: Math.random() * 0.45 + 0.18,
+          vx: (Math.random() - 0.5) * baseSpeed,
+          vy: (Math.random() - 0.5) * baseSpeed,
+          size: 0.35 + Math.random() * 0.85,
+          alpha: 0.14 + Math.random() * 0.35,
           phase: Math.random() * Math.PI * 2,
-          drift: Math.random() * 0.6 + 0.15
+          drift: 0.2 + Math.random() * 0.5,
+          bias: clusterBias
         });
       }
     }
@@ -477,72 +519,19 @@
     function drawParticle(p) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
-      gradient.addColorStop(0, `rgba(45, 89, 219, ${p.alpha})`);
-      gradient.addColorStop(0.55, `rgba(45, 89, 219, ${p.alpha * 0.45})`);
-      gradient.addColorStop(1, "rgba(45, 89, 219, 0)");
-
-      ctx.fillStyle = gradient;
+      ctx.fillStyle = `rgba(46, 89, 219, ${p.alpha})`;
       ctx.fill();
     }
 
-    function drawFieldLines() {
-      const spacing = 90;
-      ctx.save();
-      ctx.strokeStyle = "rgba(45, 89, 219, 0.04)";
-      ctx.lineWidth = 1;
-
-      for (let x = 0; x < window.innerWidth; x += spacing) {
-        ctx.beginPath();
-        for (let y = 0; y <= window.innerHeight; y += 16) {
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = Math.max(0, (mouse.radius * 1.2 - dist) / (mouse.radius * 1.2));
-          const offsetX = (dx / dist) * force * 16;
-          const wave = Math.sin((y + x) * 0.008 + performance.now() * 0.001) * 5;
-          const px = x + offsetX + wave;
-
-          if (y === 0) {
-            ctx.moveTo(px, y);
-          } else {
-            ctx.lineTo(px, y);
-          }
-        }
-        ctx.stroke();
-      }
-
-      for (let y = 0; y < window.innerHeight; y += spacing) {
-        ctx.beginPath();
-        for (let x = 0; x <= window.innerWidth; x += 16) {
-          const dx = x - mouse.x;
-          const dy = y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          const force = Math.max(0, (mouse.radius - dist) / mouse.radius);
-          const offsetY = (dy / dist) * force * 12;
-          const wave = Math.cos((x + y) * 0.008 + performance.now() * 0.0012) * 5;
-          const py = y + offsetY + wave;
-
-          if (x === 0) {
-            ctx.moveTo(x, py);
-          } else {
-            ctx.lineTo(x, py);
-          }
-        }
-        ctx.stroke();
-      }
-
-      ctx.restore();
-    }
-
     function updateParticles(time) {
-      for (const p of particles) {
-        const noiseX = Math.cos(time * 0.00025 + p.phase) * p.drift;
-        const noiseY = Math.sin(time * 0.00022 + p.phase) * p.drift;
+      const t = time * 0.00012;
 
-        p.x += p.vx + noiseX * 0.02;
-        p.y += p.vy + noiseY * 0.02;
+      for (const p of particles) {
+        const flowX = Math.cos((p.y * 0.004) + t + p.phase) * 0.08;
+        const flowY = Math.sin((p.x * 0.004) - t + p.phase) * 0.08;
+
+        p.x += p.vx + flowX + Math.cos(t + p.phase) * p.drift * 0.015;
+        p.y += p.vy + flowY + Math.sin(t + p.phase) * p.drift * 0.015;
 
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
@@ -552,35 +541,79 @@
         if (distSq < radiusSq) {
           const dist = Math.sqrt(distSq) || 1;
           const force = (mouse.radius - dist) / mouse.radius;
-          p.x += (dx / dist) * force * 0.9;
-          p.y += (dy / dist) * force * 0.9;
+          p.x += (dx / dist) * force * 1.0;
+          p.y += (dy / dist) * force * 1.0;
         }
 
-        if (p.x < -30) p.x = window.innerWidth + 30;
-        if (p.x > window.innerWidth + 30) p.x = -30;
-        if (p.y < -30) p.y = window.innerHeight + 30;
-        if (p.y > window.innerHeight + 30) p.y = -30;
+        if (p.x < -20) p.x = window.innerWidth + 20;
+        if (p.x > window.innerWidth + 20) p.x = -20;
+        if (p.y < -20) p.y = window.innerHeight + 20;
+        if (p.y > window.innerHeight + 20) p.y = -20;
       }
+    }
+
+    function drawStructuredField(time) {
+      ctx.save();
+      ctx.lineWidth = 0.5;
+
+      const verticalGap = 52;
+      const horizontalGap = 52;
+      const timeA = time * 0.00055;
+      const timeB = time * 0.00045;
+
+      for (let x = 0; x < window.innerWidth; x += verticalGap) {
+        ctx.beginPath();
+
+        for (let y = 0; y <= window.innerHeight; y += 18) {
+          const wave = Math.sin((y * 0.012) + timeA + x * 0.003) * 6;
+          const influenceX = (mouse.x - x) * 0.0009 * Math.exp(-Math.abs(mouse.y - y) / 220);
+          const px = x + wave + influenceX;
+
+          if (y === 0) ctx.moveTo(px, y);
+          else ctx.lineTo(px, y);
+        }
+
+        ctx.strokeStyle = "rgba(46, 89, 219, 0.035)";
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < window.innerHeight; y += horizontalGap) {
+        ctx.beginPath();
+
+        for (let x = 0; x <= window.innerWidth; x += 18) {
+          const wave = Math.cos((x * 0.012) + timeB + y * 0.003) * 6;
+          const influenceY = (mouse.y - y) * 0.0009 * Math.exp(-Math.abs(mouse.x - x) / 220);
+          const py = y + wave + influenceY;
+
+          if (x === 0) ctx.moveTo(x, py);
+          else ctx.lineTo(x, py);
+        }
+
+        ctx.strokeStyle = "rgba(46, 89, 219, 0.03)";
+        ctx.stroke();
+      }
+
+      ctx.restore();
     }
 
     function connectParticles() {
       ctx.save();
 
-      for (let i = 0; i < particles.length; i++) {
+      for (let i = 0; i < particles.length; i += 3) {
         const a = particles[i];
 
-        for (let j = i + 1; j < Math.min(i + 12, particles.length); j++) {
+        for (let j = i + 1; j < Math.min(i + 16, particles.length); j++) {
           const b = particles[j];
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 42) {
+          if (dist < 26) {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(45, 89, 219, ${0.05 * (1 - dist / 42)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(46, 89, 219, ${0.028 * (1 - dist / 26)})`;
+            ctx.lineWidth = 0.45;
             ctx.stroke();
           }
         }
@@ -592,7 +625,7 @@
     function animate(time = 0) {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-      drawFieldLines();
+      drawStructuredField(time);
       updateParticles(time);
       connectParticles();
 
@@ -602,11 +635,6 @@
 
       requestAnimationFrame(animate);
     }
-
-    window.addEventListener("mousemove", (event) => {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    });
 
     window.addEventListener("resize", setCanvasSize);
 
