@@ -360,8 +360,8 @@
           y: Math.random() * height,
           baseX: Math.random() * width,
           baseY: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.22,
-          vy: (Math.random() - 0.5) * 0.22,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: (Math.random() - 0.5) * 0.12,
           size: Math.random() * 0.95 + 0.25,
           alpha: Math.random() * 0.26 + 0.06,
           phase: Math.random() * Math.PI * 2
@@ -397,8 +397,8 @@
 
           if (distance <= gatherRadius) {
             const orbit = Math.atan2(dy, dx) + Math.PI / 2;
-            p.x += Math.cos(orbit) * 0.24;
-            p.y += Math.sin(orbit) * 0.24;
+            p.x += Math.cos(orbit) * 0.34;
+            p.y += Math.sin(orbit) * 0.34;
           }
         }
 
