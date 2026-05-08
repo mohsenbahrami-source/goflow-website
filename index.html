@@ -16,7 +16,10 @@
       --text: #475569;
       --line: #dbe3ee;
       --blue: #2d59db;
-      --timer: #a8b0bd;
+      --gray: #cbd5e1;
+      --soft-gray: #e2e8f0;
+      --mx: 50%;
+      --my: 50%;
     }
 
     * {
@@ -33,7 +36,40 @@
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(148, 163, 184, 0.20), transparent 18rem),
+        radial-gradient(circle at 50% 20%, rgba(45, 89, 219, 0.055), transparent 26rem),
+        radial-gradient(circle at 20% 80%, rgba(15, 23, 42, 0.035), transparent 20rem),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.026) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at 50% 48%, black 0%, rgba(0, 0, 0, 0.42) 46%, transparent 82%);
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      left: var(--mx);
+      top: var(--my);
+      width: 420px;
+      height: 420px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(203, 213, 225, 0.28), transparent 70%);
+      filter: blur(26px);
+      z-index: 0;
     }
 
     a {
@@ -42,6 +78,8 @@
     }
 
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: grid;
       grid-template-rows: 1fr auto;
@@ -55,41 +93,33 @@
 
     .content {
       width: 100%;
-      max-width: 760px;
+      max-width: 780px;
       text-align: center;
+      transform: translate3d(var(--tilt-x, 0px), var(--tilt-y, 0px), 0);
+      transition: transform 180ms ease-out;
     }
 
     .countdown {
-      margin-bottom: 20px;
-      display: flex;
+      margin: 0 auto 22px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: var(--timer);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      gap: 10px;
+      color: #94a3b8;
+      font-size: clamp(0.72rem, 1vw, 0.86rem);
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-    }
-
-    .countdown-item {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 4px;
+      user-select: none;
     }
 
     .countdown-number {
-      color: #8f98a6;
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      color: #64748b;
+      font-variant-numeric: tabular-nums;
     }
 
-    .countdown-label {
-      color: var(--timer);
-      font-size: 0.68rem;
-      font-weight: 500;
+    .countdown-separator {
+      color: #cbd5e1;
     }
 
     .brand {
@@ -128,7 +158,7 @@
     }
 
     .text {
-      max-width: 620px;
+      max-width: 640px;
       margin: 0 auto 34px;
       color: var(--text);
       font-size: clamp(0.98rem, 1.2vw, 1.06rem);
@@ -149,24 +179,32 @@
       padding: 0 20px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.82);
       color: var(--ink);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 0.94rem;
       font-weight: 500;
+      backdrop-filter: blur(14px);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
     }
 
     .pill.primary {
       background: var(--blue);
       border-color: var(--blue);
       color: #ffffff;
+      box-shadow: 0 14px 34px rgba(45, 89, 219, 0.18);
     }
 
     .pill.email {
       color: var(--blue);
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
     }
 
     footer {
@@ -180,22 +218,20 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        overflow: auto;
+      }
+
       .page {
         padding: 24px 18px 18px;
       }
 
       .countdown {
-        gap: 10px;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        gap: 7px;
         font-size: 0.68rem;
-      }
-
-      .countdown-number {
-        font-size: 0.82rem;
-      }
-
-      .countdown-label {
-        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        flex-wrap: wrap;
       }
 
       .actions {
@@ -215,6 +251,13 @@
         font-size: clamp(2.4rem, 10vw, 3.2rem);
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .content,
+      .pill {
+        transition: none;
+      }
+    }
   </style>
 </head>
 
@@ -222,27 +265,14 @@
   <div class="page">
     <main>
       <section class="content" aria-label="GoFlow launching 2026">
-
         <div class="countdown" aria-label="Countdown to launch">
-          <div class="countdown-item">
-            <span class="countdown-number" id="days">000</span>
-            <span class="countdown-label">Days</span>
-          </div>
-
-          <div class="countdown-item">
-            <span class="countdown-number" id="hours">00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-
-          <div class="countdown-item">
-            <span class="countdown-number" id="minutes">00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-
-          <div class="countdown-item">
-            <span class="countdown-number" id="seconds">00</span>
-            <span class="countdown-label">Seconds</span>
-          </div>
+          <span class="countdown-number" id="days">000</span><span>Days</span>
+          <span class="countdown-separator">/</span>
+          <span class="countdown-number" id="hours">00</span><span>Hours</span>
+          <span class="countdown-separator">/</span>
+          <span class="countdown-number" id="minutes">00</span><span>Minutes</span>
+          <span class="countdown-separator">/</span>
+          <span class="countdown-number" id="seconds">00</span><span>Seconds</span>
         </div>
 
         <div class="brand">
@@ -258,7 +288,7 @@
         </p>
 
         <div class="actions">
-          <div class="pill primary">Launching October 15, 2026</div>
+          <div class="pill primary">Launching 2026</div>
           <a class="pill email" href="mailto:contact@goflowcapital.com">contact@goflowcapital.com</a>
         </div>
       </section>
@@ -270,9 +300,12 @@
   </div>
 
   <script>
+    const root = document.documentElement;
+    const content = document.querySelector(".content");
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const launchDate = new Date("2026-10-15T00:00:00").getTime();
+    const launchDate = new Date("2026-10-15T00:00:00+02:00");
 
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
@@ -284,10 +317,10 @@
     }
 
     function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
+      const now = new Date();
+      const diff = launchDate.getTime() - now.getTime();
 
-      if (distance <= 0) {
+      if (diff <= 0) {
         daysEl.textContent = "000";
         hoursEl.textContent = "00";
         minutesEl.textContent = "00";
@@ -295,10 +328,11 @@
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
 
       daysEl.textContent = pad(days, 3);
       hoursEl.textContent = pad(hours);
@@ -308,6 +342,28 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    window.addEventListener("mousemove", function (event) {
+      const x = event.clientX;
+      const y = event.clientY;
+
+      root.style.setProperty("--mx", x + "px");
+      root.style.setProperty("--my", y + "px");
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const moveX = ((x - centerX) / centerX) * 6;
+      const moveY = ((y - centerY) / centerY) * 4;
+
+      content.style.setProperty("--tilt-x", moveX + "px");
+      content.style.setProperty("--tilt-y", moveY + "px");
+    });
+
+    window.addEventListener("mouseleave", function () {
+      content.style.setProperty("--tilt-x", "0px");
+      content.style.setProperty("--tilt-y", "0px");
+    });
   </script>
 </body>
 </html>
