@@ -1,7 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GoFlow — Smart tools for every investor. Launching 2026." />
+  <meta name="description" content="GoFlow — Smart tools for every investor. Launching October 15, 2026." />
   <meta name="theme-color" content="#ffffff" />
   <title>GoFlow</title>
 
@@ -14,6 +16,7 @@
       --text: #475569;
       --line: #dbe3ee;
       --blue: #2d59db;
+      --timer: #a8b0bd;
     }
 
     * {
@@ -54,6 +57,39 @@
       width: 100%;
       max-width: 760px;
       text-align: center;
+    }
+
+    .countdown {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--timer);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .countdown-item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .countdown-number {
+      color: #8f98a6;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-label {
+      color: var(--timer);
+      font-size: 0.68rem;
+      font-weight: 500;
     }
 
     .brand {
@@ -148,6 +184,20 @@
         padding: 24px 18px 18px;
       }
 
+      .countdown {
+        gap: 10px;
+        margin-bottom: 18px;
+        font-size: 0.68rem;
+      }
+
+      .countdown-number {
+        font-size: 0.82rem;
+      }
+
+      .countdown-label {
+        font-size: 0.62rem;
+      }
+
       .actions {
         flex-direction: column;
         width: 100%;
@@ -172,6 +222,29 @@
   <div class="page">
     <main>
       <section class="content" aria-label="GoFlow launching 2026">
+
+        <div class="countdown" aria-label="Countdown to launch">
+          <div class="countdown-item">
+            <span class="countdown-number" id="days">000</span>
+            <span class="countdown-label">Days</span>
+          </div>
+
+          <div class="countdown-item">
+            <span class="countdown-number" id="hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+
+          <div class="countdown-item">
+            <span class="countdown-number" id="minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+
+          <div class="countdown-item">
+            <span class="countdown-number" id="seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+
         <div class="brand">
           <span class="go">Go</span><span class="flow">Flow</span>
         </div>
@@ -185,7 +258,7 @@
         </p>
 
         <div class="actions">
-          <div class="pill primary">Launching 2026</div>
+          <div class="pill primary">Launching October 15, 2026</div>
           <a class="pill email" href="mailto:contact@goflowcapital.com">contact@goflowcapital.com</a>
         </div>
       </section>
@@ -198,6 +271,43 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const launchDate = new Date("2026-10-15T00:00:00").getTime();
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function pad(value, length = 2) {
+      return String(value).padStart(length, "0");
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = "000";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysEl.textContent = pad(days, 3);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
