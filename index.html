@@ -1,203 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoFlow — Intelligent Financial Infrastructure</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GoFlow — Smart tools for every investor. Coming soon." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>GoFlow — Coming Soon</title>
 
+  <style>
     :root {
-      --bg: #fafafa;
-      --text: #111111;
-      --accent: #0066ff;
+      --bg: #ffffff;
+      --soft-bg: #f7f9fc;
+      --ink: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --blue: #2d59db;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(45, 89, 219, 0.045), transparent 32rem),
+        linear-gradient(180deg, #ffffff 0%, var(--soft-bg) 100%);
     }
 
-    .background {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 30%, rgba(0, 102, 255, 0.06) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 1;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 28px;
+    }
+
+    header {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .brand img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    main {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 80px 0;
     }
 
     .content {
-      position: relative;
-      z-index: 2;
       max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
     }
 
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 4.8rem;
-      font-weight: 600;
-      letter-spacing: -3px;
-      color: #111111;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-    }
-
-    .logo::after {
-      content: '';
+    .logo-main {
+      width: min(72vw, 460px);
+      height: auto;
       display: block;
-      width: 48px;
-      height: 2px;
-      background: var(--accent);
-      margin: 12px auto 0;
+      margin: 0 auto 34px;
     }
 
-    .tag {
-      font-size: 1.05rem;
-      letter-spacing: 3px;
-      font-weight: 500;
-      color: #555;
-      margin-bottom: 2.5rem;
+    .label {
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    .headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.1rem;
-      line-height: 1.25;
-      font-weight: 500;
-      max-width: 580px;
-      margin: 0 auto 2.5rem;
-      color: #1a1a1a;
+    h1 {
+      margin-bottom: 20px;
+      color: var(--ink);
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      font-weight: 700;
     }
 
-    .description {
-      font-size: 1.15rem;
-      color: #444;
-      max-width: 520px;
-      margin: 0 auto 4rem;
+    .text {
+      max-width: 620px;
+      margin: 0 auto 32px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.25vw, 1.08rem);
+      line-height: 1.75;
       font-weight: 400;
     }
 
-    .values {
+    .actions {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 3.5rem;
-      margin-bottom: 5rem;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .value-item {
-      font-size: 1.1rem;
+    .pill {
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      font-size: 0.94rem;
       font-weight: 500;
-      color: #333;
-      position: relative;
-      padding-bottom: 8px;
     }
 
-    .value-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 24px;
-      height: 1px;
-      background: #ddd;
+    .pill.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
     }
 
-    .cta-button {
-      background: #111111;
-      color: white;
-      border: none;
-      padding: 16px 42px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      border-radius: 60px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .cta-button:hover {
-      background: #0066ff;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.25);
-    }
-
-    .coming-soon {
-      margin-top: 3.5rem;
-      font-size: 0.95rem;
-      letter-spacing: 2px;
-      color: #666;
+    .pill.email {
+      color: var(--blue);
     }
 
     footer {
-      position: absolute;
-      bottom: 32px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #999;
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 10px;
+      color: #9ca3af;
+      font-size: 0.82rem;
+      font-weight: 400;
     }
 
     @media (max-width: 640px) {
-      .logo { font-size: 3.8rem; }
-      .headline { font-size: 1.85rem; }
-      .values { gap: 2.5rem; }
+      .page {
+        padding: 22px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .brand img {
+        height: 30px;
+      }
+
+      main {
+        padding: 58px 0;
+      }
+
+      .logo-main {
+        width: min(82vw, 380px);
+        margin-bottom: 28px;
+      }
+
+      .actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .pill {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="page">
+    <header>
+      <a class="brand" href="/" aria-label="GoFlow home">
+        <img src="./logo.png" alt="GoFlow" />
+      </a>
 
-  <div class="background"></div>
+      <div class="status">Coming soon</div>
+    </header>
 
-  <div class="content">
-    <div class="logo">GoFlow</div>
-    <div class="tag">Intelligent Financial Infrastructure</div>
-    
-    <h1 class="headline">
-      Clarity in complexity.<br>
-      Discipline in decisions.<br>
-      Intelligence in every move.
-    </h1>
+    <main>
+      <section class="content" aria-label="GoFlow coming soon">
+        <img class="logo-main" src="./logo.png" alt="GoFlow" />
 
-    <p class="description">
-      A new financial platform designed for serious investors who value transparency, structure, and thoughtful decision-making.
-    </p>
+        <div class="label">Official website</div>
 
-    <button class="cta-button" onclick="window.location='mailto:info@goflow-ai.com'">
-      Request Early Access
-    </button>
+        <h1>Smart tools for every investor.</h1>
 
-    <div class="coming-soon">Launching 2026</div>
+        <p class="text">
+          GoFlow is preparing a modern financial technology platform focused on clarity,
+          intelligent structure, and disciplined investor decision-making.
+        </p>
 
-    <div class="values">
-      <div class="value-item">Clarity</div>
-      <div class="value-item">Discipline</div>
-      <div class="value-item">Intelligence</div>
-    </div>
+        <div class="actions">
+          <div class="pill primary">Coming Soon</div>
+          <a class="pill email" href="mailto:info@goflow-ai.com">info@goflow-ai.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span>&nbsp;GoFlow. All rights reserved.
+    </footer>
   </div>
 
-  <footer>
-    © GoFlow. All rights reserved.
-  </footer>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
