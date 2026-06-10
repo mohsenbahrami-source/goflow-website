@@ -60,8 +60,26 @@
       z-index: 2;
       min-height: 100vh;
       display: grid;
-      grid-template-rows: 1fr auto;
+      grid-template-rows: auto 1fr auto;
       padding: 32px 24px 20px;
+    }
+
+    .top-logo {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      height: auto;
+    }
+
+    .top-logo img {
+      width: 55px;
+      height: auto;
+      max-height: 55px;
+      display: block;
+      object-fit: contain;
     }
 
     main {
@@ -206,6 +224,13 @@
         padding: 24px 18px 18px;
       }
 
+      .top-logo img {
+        width: 42px;
+        height: auto;
+        max-height: 42px;
+        object-fit: contain;
+      }
+
       .countdown {
         margin-bottom: 24px;
         gap: 6px;
@@ -245,6 +270,13 @@
   <canvas id="particleCanvas"></canvas>
 
   <div class="page">
+    <a class="top-logo" href="https://goflowcapital.com" aria-label="GoFlow Capital">
+      <img
+        src="https://goflow-assets-prod.s3.eu-central-1.amazonaws.com/email/logo/goflow-logo-footer-mark-128.png"
+        alt="GoFlow Capital"
+      />
+    </a>
+
     <main>
       <section class="content" aria-label="GoFlow launching October 16 2026">
         <div class="countdown" aria-label="Countdown to launch">
